@@ -73,3 +73,8 @@ LiteCloud is a collection of shell scripts for simple deployment of a LEMP stack
     ./database.sh rem user - Remove a user (cannot be undone)
 
 </details>
+
+TODO:
+
+Install Wordpress automatically
+Have all required PHP modules installed - mysqli is missing currently!
