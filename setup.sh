@@ -130,7 +130,7 @@ function install_php {
   apt -y install $PHP_EXTRAS
 
   # Enable PHP-FPM
-  systemctl enable php8.1-fpm
+  systemctl enable php8.4-fpm
 
 } # End function install_php
 
@@ -226,7 +226,7 @@ function optimize_stack {
     sed -i 's/^[^#]/#&/' /etc/cron.d/awstats
   fi
 
-  systemctl stop php8.1-fpm.service
+  systemctl stop php8.4-fpm.service
 
   php_fpm_conf="/etc/php/*/fpm/pool.d/www.conf"
   # Limit FPM processes
@@ -236,7 +236,7 @@ function optimize_stack {
   sed -i 's/^pm.max_spare_servers.*/pm.max_spare_servers = '${FPM_MAX_SPARE_SERVERS}'/' $php_fpm_conf
   sed -i 's/\;pm.max_requests.*/pm.max_requests = '${FPM_MAX_REQUESTS}'/' $php_fpm_conf
   # Change to socket connection for better performance
-  sed -i 's/^listen =.*/listen = \/var\/run\/php8.1-fpm.sock/' $php_fpm_conf
+  sed -i 's/^listen =.*/listen = \/var\/run\/php8.4-fpm.sock/' $php_fpm_conf
 
   php_ini_dir="/etc/php/*/fpm/php.ini"
   # Tweak php.ini based on input in options.conf
@@ -251,9 +251,9 @@ function optimize_stack {
 
   restart_webserver
   sleep 2
-  systemctl start php8.1-fpm.service
+  systemctl start php8.4-fpm.service
   sleep 2
-  systemctl restart php8.1-fpm.service
+  systemctl restart php8.4-fpm.service
   echo -e "\033[35;1m Optimization complete! \033[0m"
 
 } # End function optimize
@@ -479,7 +479,7 @@ install)
   install_extras
   install_postfix
   restart_webserver
-  systemctl restart php8.1-fpm.service
+  systemctl restart php8.4-fpm.service
   echo -e "\033[35;1m Webserver + PHP-FPM + MySQL install complete! \033[0m"
   ;;
 optimize)
