@@ -1,27 +1,27 @@
-### LiteCloud Readme
+# LiteCloud
 
-LiteCloud is based on a project called TuxLite, a free collection of shell scripts for immidiate deployment of LEMP stacks (Linux, Nginx, MySQL and PHP 8.1) for Ubuntu 22.04 (TLS) x64.
+LiteCloud is a collection of shell scripts for simple deployment of a LEMP stack (Linux, Nginx, MariaDB and PHP 8.4) for Ubuntu.
 
 ### The following are going to be installed:
 
 -   Nginx
--   MariaDB or MySQL
+-   MariaDB (or MySQL)
 -   PHP-FPM + commonly used PHP modules
 -   Let's Encrypt SSL
--   Postfix mail server (securely configured to be outgoing only)
+-   Postfix
 
 ### Requirements
 
--   Supports Ubuntu 22.04, Debian 12.1
--   A server with at least 512MB RAM. (1GB and above is recommended)
--   Basic Linux knowledge. You will need know how to connect to your server remotely.
--   Basic text editor knowledge. For beginners, learning GNU nano is recommended.
-
-If this is your first time with a Linux server, head over to [Digital Ocean](https://m.do.co/c/1eb2baff1acd) Community section and I suggest spending some time reading through tutorials.
+-   Fresh install of Ubuntu 24.04 (at least)
 
 ### Quick Install (Git)
 
-    # Install git and clone LiteCloud
+    # Update, upgrade and install git
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install git
+
+    # Clone LiteCloud repo
     git clone https://github.com/quack79/LiteCloud.git ; cd LiteCloud ; chmod 700 *.sh ; chmod 700 options.conf
 
     # Edit options to enter server IP, MariaDB/MySQL password etc.
@@ -30,7 +30,13 @@ If this is your first time with a Linux server, head over to [Digital Ocean](htt
     # Install LEMP stack.
     ./install.sh
 
-### Add a new Linux user then add to sudoer (since root is now disabled).
+### DONE!
+
+<details>
+
+<summary>Additional commands</summary>
+
+#### Add a new Linux user, and add to sudoer (if root was disabled in options).
 
     # To add user
     adduser johnsmith
@@ -38,7 +44,7 @@ If this is your first time with a Linux server, head over to [Digital Ocean](htt
     # To add user to sudoer
     usermod -aG sudo johnsmith
 
-### Add domain to the user
+#### Add domain to the user
 
     # Add domains to the user
     ./domain.sh add johnsmith yourdomain.com
@@ -55,7 +61,7 @@ If this is your first time with a Linux server, head over to [Digital Ocean](htt
     ./domain.sh dbgui on
     ./domain.sh dbgui off
 
-### Database and database user management
+#### Database and database user management
 
     # Create and drop database
     ./database.sh add db - Create new database
@@ -66,18 +72,4 @@ If this is your first time with a Linux server, head over to [Digital Ocean](htt
     ./database.sh add super_user - Create new SUPER user
     ./database.sh rem user - Remove a user (cannot be undone)
 
-### So, why Nginx only?
-
-We want to run a very efficient webserver using minimal server specifications and Nginx will allow us to do that over Apache. (no debate intended, which is a better webserver)
-
-### Work in progress
-
-- Database management
-    + db (add, remove)
-    + user (add, remove)
-
-### Future feature
-
-- Run Nginx with Apache
-    + Nginx runs proxy
-    + Apache as backend
+</details>
