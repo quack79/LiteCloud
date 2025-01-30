@@ -77,4 +77,4 @@ LiteCloud is a collection of shell scripts for simple deployment of a LEMP stack
 TODO:
 
 Install Wordpress automatically
-Have all required PHP modules installed - mysqli is missing currently!
+
