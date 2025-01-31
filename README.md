@@ -1,3 +1,12 @@
+TODO:
+
+To bring this up to date with Ubuntu 24.04, there are a couple things that need to be modified. 
+
+- Install Wordpress automatically
+- Fix permissions regarding serving files from /home [systemd requires ProtectHome=false but on php-fpm or nginx?]
+- Correct chmod/chown permissions 
+
+
 # LiteCloud
 
 LiteCloud is a collection of shell scripts for simple deployment of a LEMP stack (Linux, Nginx, MariaDB and PHP 8.4) for Ubuntu.
@@ -73,8 +82,3 @@ LiteCloud is a collection of shell scripts for simple deployment of a LEMP stack
     ./database.sh rem user - Remove a user (cannot be undone)
 
 </details>
-
-TODO:
-
-Install Wordpress automatically
-
